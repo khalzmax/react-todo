@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
-import { Card, Divider } from 'antd';
+import { Card, Divider, Button } from 'antd';
 import { ToDoItem } from './ToDoItem';
 import { ToDoForm } from './ToDoForm';
 
 export const ToDo = () => {
   const [todos, setTodos] = useState([
-    {id: 1, name: 'some', checked: false},
-    {id: 2, name: 'another one', checked: false}
+    { id: 1, title: 'some', description: "any", checked: false },
+    { id: 2, title: "one", description: 'another one', checked: false }
   ]);
   const [idCount, setIdCount] = useState(10);
 
   const renderTodoItems = (todos) => {
     return (
-      <ul className="todo-list">
-        { todos.map(todo => <ToDoItem 
+      <div>
+        <div class="container"> Unchecked ToDoes :{(todos.filter(todo => todo.checked === false)).length}
+          <Button  onClick={removeSelectedItems} type="primary" className="DeleteButton">Delete selected</Button>
+        </div>
+        <ul className="todo-list">
+          {todos.map(todo => <ToDoItem
             key={todo.id}
             item={todo}
-            onRemove={onRemove} 
-            onCheck={onCheck} 
-          />) }
-      </ul>
+            description={todo.description}
+            onRemove={onRemove}
+            onCheck={onCheck}
+          />)}
+        </ul>
+      </div>
     )
+  }
+
+  const removeSelectedItems = () => {
+    setTodos(todos.filter(item => !item.checked));
   }
 
   const onRemove = (id) => {
@@ -34,7 +44,7 @@ export const ToDo = () => {
 
   const onCheck = (id) => {
     const index = todos.findIndex(todo => todo.id === id);
-    
+
     if (index !== -1) {
       const todo = todos[index];
 
@@ -45,22 +55,23 @@ export const ToDo = () => {
     }
   }
 
-  const onSubmit = (name) => {
+  const onSubmit = (title, description) => {
     const todo = {
-      name,
+      title,
+      description,
       id: idCount,
       checked: false
     };
 
     setTodos([...todos, todo]);
     setIdCount(idCount + 1);
-  } 
+  }
 
   return (
     <Card title={'My todos'} className="todo-card">
       <ToDoForm onSubmit={onSubmit} />
       <Divider />
-      { renderTodoItems(todos) }
+      {renderTodoItems(todos)}
     </Card>
   );
 }
