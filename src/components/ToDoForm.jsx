@@ -12,12 +12,12 @@ export const ToDoForm = (props) => {
   }
 
   return (
-    <Form className="todo-form" form={form} layout={'inline'} onFinish={onFinish}>
-      <Form.Item name="name" className="todo-form-input">
+    <Form className="d-flex justify-content-evenly col-12"  form={form} onFinish={onFinish}>
+      <Form.Item name="name" className="todo-form-input col-9">
         <Input placeholder={'New todo'} />
       </Form.Item>
       <Form.Item className="todo-form-actions">
-        <Button htmlType="submit" type="primary">Add</Button>
+        <Button htmlType="submit" className="btn-success">Add</Button>
       </Form.Item>
     </Form>
   )
