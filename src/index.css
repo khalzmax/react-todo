@@ -38,3 +38,39 @@
 .todo-form-actions {
   flex: 0!important;
 }
+
+.ant-checkbox-wrapper-checked{
+  text-decoration: line-through;
+}
+
+.container{
+  display: flex;
+  justify-content:  space-between;
+  margin-bottom: 10px;
+}
+
+.DeleteButton{
+  background: rgb(148, 0, 0);
+  border: rgb(148, 0, 0);
+}
+
+.RemoveButton{
+  height: 20px;
+  width: 20px;
+  margin: 5px 0;
+  padding: 0px;
+  background: url("images/trash_icon.png") center no-repeat;
+  background-size: cover;
+  border: none;
+  z-index: 1;
+  transition: all 0.2s linear;
+}
+
+.RemoveButton:hover{
+  opacity: 1;
+  border: 1px solid black;
+  border-radius: 20%;
+  background: url("images/trash_icon.png") center no-repeat;
+  background-size: cover;
+
+}
